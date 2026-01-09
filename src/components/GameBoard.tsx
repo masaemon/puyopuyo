@@ -10,6 +10,8 @@ interface GameBoardProps {
   chain: number;
   gameOver: boolean;
   isPaused: boolean;
+  onResume?: () => void;
+  onRestart?: () => void;
 }
 
 export const GameBoard: React.FC<GameBoardProps> = ({
@@ -20,12 +22,24 @@ export const GameBoard: React.FC<GameBoardProps> = ({
   chain,
   gameOver,
   isPaused,
+  onResume,
+  onRestart,
 }) => {
   // 表示用のボードを作成（上1行を除く）
   const visibleBoard = board.slice(1);
 
   // 落下中のぷよの位置を調整（表示用）
   const adjustY = (y: number) => y - 1;
+
+  const handleOverlayClick = (e: React.MouseEvent | React.TouchEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (gameOver && onRestart) {
+      onRestart();
+    } else if (isPaused && onResume) {
+      onResume();
+    }
+  };
 
   return (
     <div className="game-container">
@@ -79,20 +93,28 @@ export const GameBoard: React.FC<GameBoardProps> = ({
           ))}
 
           {gameOver && (
-            <div className="overlay">
+            <div
+              className="overlay"
+              onClick={handleOverlayClick}
+              onTouchStart={handleOverlayClick}
+            >
               <div className="overlay-content">
                 <h2>GAME OVER</h2>
                 <p>Score: {score.toLocaleString()}</p>
-                <p className="restart-hint">Press ENTER or tap to restart</p>
+                <p className="restart-hint">タップしてリスタート</p>
               </div>
             </div>
           )}
 
           {isPaused && !gameOver && (
-            <div className="overlay">
+            <div
+              className="overlay"
+              onClick={handleOverlayClick}
+              onTouchStart={handleOverlayClick}
+            >
               <div className="overlay-content">
                 <h2>PAUSED</h2>
-                <p className="restart-hint">Press P or ESC to resume</p>
+                <p className="restart-hint">タップして再開</p>
               </div>
             </div>
           )}
