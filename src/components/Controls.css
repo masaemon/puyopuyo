@@ -1,0 +1,146 @@
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 15px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.controls-row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.control-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s, box-shadow 0.1s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.control-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.control-btn:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.move-btn {
+  background: linear-gradient(145deg, #4a90d9, #357abd);
+  color: white;
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2);
+}
+
+.move-btn:active:not(:disabled) {
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.3),
+    inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.rotate-btn {
+  background: linear-gradient(145deg, #9b59b6, #8e44ad);
+  color: white;
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2);
+}
+
+.rotate-btn:active:not(:disabled) {
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.3),
+    inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.hard-drop-btn {
+  background: linear-gradient(145deg, #e74c3c, #c0392b);
+  color: white;
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2);
+}
+
+.hard-drop-btn:active:not(:disabled) {
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.3),
+    inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.down-btn {
+  background: linear-gradient(145deg, #27ae60, #229954);
+}
+
+.action-btn {
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  background: linear-gradient(145deg, #555, #444);
+  color: white;
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.1);
+}
+
+.action-btn:active:not(:disabled) {
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.3),
+    inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* PC向け：コントロールを非表示 */
+@media (min-width: 769px) and (hover: hover) {
+  .controls {
+    display: none;
+  }
+}
+
+/* タッチデバイス向け：コントロールを表示 */
+@media (max-width: 768px), (hover: none) {
+  .controls {
+    display: flex;
+  }
+
+  .control-btn {
+    width: 55px;
+    height: 55px;
+    font-size: 22px;
+  }
+
+  .action-btn {
+    width: 45px;
+    height: 45px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 360px) {
+  .control-btn {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+
+  .action-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .controls-row {
+    gap: 8px;
+  }
+}
