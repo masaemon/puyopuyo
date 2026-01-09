@@ -13,14 +13,8 @@ function App() {
     resetGame,
   } = useGame();
 
-  const handleScreenTap = () => {
-    if (gameState.gameOver) {
-      resetGame();
-    }
-  };
-
   return (
-    <div className="app" onClick={handleScreenTap}>
+    <div className="app">
       <header className="header">
         <h1>ぷよぷよ</h1>
       </header>
@@ -34,6 +28,8 @@ function App() {
           chain={gameState.chain}
           gameOver={gameState.gameOver}
           isPaused={gameState.isPaused}
+          onResume={togglePause}
+          onRestart={resetGame}
         />
 
         <Controls
@@ -42,7 +38,7 @@ function App() {
           onHardDrop={hardDrop}
           onPause={togglePause}
           onReset={resetGame}
-          disabled={gameState.gameOver || gameState.isPaused || gameState.isPopping}
+          disabled={gameState.gameOver || gameState.isPopping}
         />
       </main>
 
