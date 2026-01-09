@@ -1,0 +1,94 @@
+.app {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+}
+
+.header {
+  padding: 10px;
+  text-align: center;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 28px;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  letter-spacing: 4px;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px 0;
+}
+
+.footer {
+  padding: 10px;
+  text-align: center;
+}
+
+.instructions {
+  color: #aaa;
+  font-size: 12px;
+}
+
+.instructions p {
+  margin: 0;
+}
+
+.desktop-only {
+  display: block;
+}
+
+.mobile-only {
+  display: none;
+}
+
+/* スマホ対応 */
+@media (max-width: 768px), (hover: none) {
+  .desktop-only {
+    display: none;
+  }
+
+  .mobile-only {
+    display: block;
+  }
+
+  .header h1 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 360px) {
+  .header h1 {
+    font-size: 20px;
+  }
+
+  .header {
+    padding: 5px;
+  }
+}
+
+/* スクロール防止 */
+html, body {
+  overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: pan-x pan-y;
+}
+
+/* Safe area対応（iPhoneのノッチ等） */
+@supports (padding-top: env(safe-area-inset-top)) {
+  .header {
+    padding-top: calc(10px + env(safe-area-inset-top));
+  }
+
+  .footer {
+    padding-bottom: calc(10px + env(safe-area-inset-bottom));
+  }
+}
